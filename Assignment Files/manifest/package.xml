@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>*</members>
+        <members>AccountDataController</members>
+		<members>ContactTriggerHandler</members>
+		<members>ContactTriggerHelper</members>
+		<members>ContactTriggerTest</members>
         <name>ApexClass</name>
     </types>
     <types>
-        <members>*</members>
+        <members>LWCDemo</members>
         <name>ApexPage</name>
     </types>
     <types>
-        <members>*</members>
+        <members>ContactTrigger</members>
         <name>ApexTrigger</name>
     </types>
     <types>
-        <members>*</members>
+        <members>VFLWCApp</members>
         <name>AuraDefinitionBundle</name>
     </types>
     <types>
@@ -21,7 +24,7 @@
         <name>CustomField</name>
     </types>
     <types>
-        <members>*</members>
+        <members>lwcAccountView</members>
         <name>LightningComponentBundle</name>
     </types>
     <types>
