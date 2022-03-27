@@ -1,0 +1,79 @@
+<template>
+    <div class="spinner">
+        <template if:true={isLoading}>
+             <lightning-spinner alternative-text="Loading" variant="brand" size="large">
+             </lightning-spinner>
+        </template>
+    </div>
+    <!-- display errors if any -->
+    <template if:true={error}>
+        <div class="slds-notify slds-notify_alert slds-alert_error" role="alert">{error}</div>
+    </template>
+    <!-- Account List table-->
+    <lightning-card  title="Accounts" icon-name="standard:account"  if:true={showlist}> 
+        <div style="height: auto;" class="slds-p-around_medium lgc-bg">
+            <template if:true={accountList} >
+                <lightning-datatable
+                    key-field="id"
+                    data={accountList}
+                    columns={columns}
+                    max-row-selection="1"
+                    onrowselection={getSelectedAccountId}
+                    >
+                </lightning-datatable>
+                <template if:true={selectedAccountId} >
+                    <lightning-button variant="Brand" label="Next" title="show account details" onclick={handleNext} class="slds-m-top_medium slds-m-left_x-small slds-align_absolute-center"></lightning-button>
+                </template>
+            </template>
+        </div>
+    </lightning-card>
+    <!-- Show Account Details based on account selected-->
+    <template if:true={showDetail}>
+    <div style="height: auto;" class="slds-p-around_medium lgc-bg">
+        <lightning-card >
+            <h3 slot="title">
+                <lightning-icon icon-name="standard:account_info" size="small" class="slds-m-around_small"></lightning-icon>
+                Account Details: {account.Name}
+            </h3>
+            <div class="slds-grid slds-p-around_medium">
+                <div class="slds-col slds-size_1-of-2">
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label" for="account_name">Name</label>
+                        <div class="slds-form-element__control">
+                            <p class=”slds-p-horizontal_medium” id="account_name">{account.Name}</p>
+                        </div>
+                    </div>
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label" for="account_ind">Industry</label>
+                        <div class="slds-form-element__control">
+                            <p class=”slds-p-horizontal_medium” id="account_ind">{account.Industry}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label" for="account_type">Type</label>
+                        <div class="slds-form-element__control">
+                            <p class=”slds-p-horizontal_medium” id="account_type">{account.Type}</p>
+                        </div>
+                    </div>
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label" for="account_ownerName">Owner Name</label>
+                        <div class="slds-form-element__control">
+                            <p class=”slds-p-horizontal_medium” id="account_ownerName">{account.Owner.Name}</p>
+                            <img src={account.Owner.SmallPhotoUrl} alt={account.Owner.Name} height="100px" width="100px"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="padding:100px">
+                <lightning-avatar src="\{account.Owner.SmallPhotoUrl}"></lightning-avatar>
+            </div> 
+            <div slot="actions">
+                <lightning-button variant="Brand" label="Back" title="show account list" onclick={handleBack} class="slds-m-top_medium slds-m-left_x-small slds-align_absolute-center"></lightning-button>
+            </div>
+        </lightning-card>
+    </div>
+    </template>
+    
+</template>

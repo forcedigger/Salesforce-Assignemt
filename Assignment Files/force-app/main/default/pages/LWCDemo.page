@@ -1,0 +1,14 @@
+<apex:page showHeader="false" sidebar="false">
+    <apex:includeLightning />    
+    <div id="LightningComponentid" />    
+    <script>
+    $Lightning.use("c:VFLWCApp", function() {
+        $Lightning.createComponent("c:lwcAccountView",
+          { },
+          "LightningComponentid",
+          function(cmp) {
+             console.log('Account List lwc loaded');
+          });
+    });
+    </script>
+</apex:page>
